@@ -4,6 +4,8 @@ import Auth from './components/Auth';
 import NotFound from './components/NotFound';
 import App from './App';
 import MyLists from './components/MyLists';
+import Movie from './components/Movie';
+import MyWatchList from './components/MyWatchList';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +19,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/my-lists',
-        element: <MyLists />,
+        element: <MyWatchList />,
+      },
+      {
+        path: '/movies/:id',
+        element: <Movie />,
       },
       {
         path: '/auth',

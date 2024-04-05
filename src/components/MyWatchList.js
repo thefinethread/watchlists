@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import MovieCard from './MovieCard';
+import React, { useState } from 'react';
 import MoviesList from './MoviesList';
 
 const res = {
@@ -89,40 +88,20 @@ const res = {
   Response: 'True',
 };
 
-const Home = () => {
-  const [searchResult, setSearchResult] = useState(res.Search);
+const MyWatchList = () => {
+  const [watchList, setWatchList] = useState(res.Search);
 
   return (
-    <main className=' w-full py-2 pb-10'>
-      <section className='border-2 border-orange-700 rounded-md p-4 max-w-2xl m-auto'>
-        <h1 className='text-3xl mb-4'>
-          Welcome to <span className='text-primary'>Watchlists</span>
-        </h1>
-        <p>Browse movies, add them to watchlists and view your watchlists.</p>
-        <p>
-          Just click the + to add a movie and click on the poster to view movie
-          details.
-        </p>
-      </section>
-      <form className='sm:w-2/3 max-w-2xl  m-auto flex flex-col gap-2 sm:flex-row mb-20 my-14'>
-        <input
-          type='text'
-          placeholder='search movies...'
-          className='w-full  h-10 border-2 border-solid border-zinc-400 outline-none rounded-md px-2'
-        />
-        <button
-          type='submit'
-          className='px-5  h-10 bg-primary rounded-md text-white hover:scale-95 transition-transform'
-        >
-          Search
-        </button>
-      </form>
-
+    <main className=' w-full pb-10'>
+      <h1 className='text-center font-semibold text-5xl my-8'>
+        {' '}
+        My WatchList{' '}
+      </h1>
       <section className='w-full flex justify-center'>
-        {searchResult && <MoviesList movies={searchResult} />}
+        {watchList && <MoviesList movies={watchList} />}
       </section>
     </main>
   );
 };
 
-export default Home;
+export default MyWatchList;

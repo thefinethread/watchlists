@@ -5,7 +5,7 @@ function App() {
   return (
     <div className='h-screen w-screen max-w-7xl'>
       <Header />
-      <div className='max-w-7xl px-4 h-[calc(100%-80px)]'>
+      <div className='max-w-7xl px-4 h-[calc(100%-80px)] overflow-x-hidden'>
         <Outlet />
       </div>
     </div>

@@ -14,7 +14,7 @@ const Auth = () => {
         />
         <button
           type='submit'
-          className='px-5  h-10  bg-orange-500 rounded-md text-white hover:scale-95 transition-transform'
+          className='px-5  h-10 bg-primary rounded-md text-white hover:scale-95 transition-transform'
         >
           Continue
         </button>

@@ -6,6 +6,9 @@ module.exports = {
       textColor: {
         primary: 'rgb(249,115,22)',
       },
+      backgroundColor: {
+        primary: 'rgb(249,115,22)',
+      },
     },
   },
   plugins: [],
