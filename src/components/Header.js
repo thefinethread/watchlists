@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { navItems } from '../constants/contants';
 
 const activeLink = ({ isActive }) =>
   isActive ? 'underline underline-offset-2 text-orange-600' : '';
@@ -12,16 +13,14 @@ const Header = () => {
       </Link>
       <nav className='flex items-center gap-4'>
         <ul className='flex gap-4'>
-          <NavLink to='/' className={activeLink}>
-            <li className='hover:underline hover:underline-offset-2'>Home</li>
-          </NavLink>
-          <NavLink to='/my-lists' className={activeLink}>
-            <li className='hover:underline hover:underline-offset-2'>
-              My Lists{' '}
-            </li>
-          </NavLink>
+          {navItems.map((item) => (
+            <NavLink key={item.id} to={item.to} className={activeLink}>
+              <li className='hover:underline hover:underline-offset-2'>
+                {item.label}
+              </li>
+            </NavLink>
+          ))}
         </ul>
-        <button>Guest</button>
       </nav>
     </header>
   );
