@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import MovieCard from './MovieCard';
 import MoviesList from './MoviesList';
+import Shimmer from './Shimmer';
 
 const res = {
   Search: [
@@ -119,7 +120,8 @@ const Home = () => {
       </form>
 
       <section className='w-full flex justify-center'>
-        {searchResult && <MoviesList movies={searchResult} />}
+        {/* {searchResult && <MoviesList movies={searchResult} />} */}
+        <Shimmer />
       </section>
     </main>
   );
