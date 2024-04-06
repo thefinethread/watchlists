@@ -1,5 +1,5 @@
-import React from 'react';
-import { RiAddFill } from 'react-icons/ri';
+import React, { useContext } from 'react';
+import AppContext from '../context/AppContext';
 
 const movie = {
   Title: 'Kureyon Shinchan: Action Kamen vs Haigure Maô',
@@ -16,7 +16,7 @@ const movie = {
   Country: 'Japan',
   Awards: 'N/A',
   Poster:
-    'https://m.media-amazon.com/images/M/MV5BOGY5YzI5ZjEtNDNiNy00MzFjLWFkOGQtNGJmOTE5MWRhYjIzXkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_SX300.jpg',
+    'https://m.media-amazon.com/images/M/MV5BMjZjZTA2NDAtOTYxMS00ZDIyLTliMjAtYzhhZGVlMjc0NmY5XkEyXkFqcGdeQXVyNjY4NjQwNTA@._V1_SX300.jpg',
   Ratings: [
     {
       Source: 'Internet Movie Database',
@@ -36,6 +36,9 @@ const movie = {
 };
 
 const Movie = () => {
+  const { addMovieToWatchLists, removeMovieFromWatchLists } =
+    useContext(AppContext);
+
   const rowData = [
     {
       id: 1,
@@ -55,20 +58,46 @@ const Movie = () => {
     { id: 4, data: [{ label: 'Languages', key: 'Language' }] },
   ];
 
+  const { watchLists } = useContext(AppContext);
+
+  const isInWatchLists = Boolean(
+    watchLists.find((item) => item.imdbID === movie.imdbID)
+  );
+
+  const handleAddToWatchLists = (e) => {
+    e.preventDefault();
+    const { imdbID, Title, Year, Poster } = movie;
+    addMovieToWatchLists({ imdbID, Title, Year, Poster });
+  };
+
+  const handleRemoveFromWatchLists = (e) => {
+    e.preventDefault();
+    removeMovieFromWatchLists(movie.imdbID);
+  };
+
   return (
-    <div className='flex-col sm:flex-row flex gap-8 mb-4 items-center justify-center'>
+    <div className='flex-col sm:flex-row flex gap-8 mt-5 mb-4 items-center justify-center'>
       <div className=' w-[270px] m-auto relative'>
-        <button className='absolute bg-zinc-800 rounded-full h-10 w-10 top-4 border-[1.5px] border-zinc-50  right-4 text-white text-3xl justify-center items-center flex'>
-          <RiAddFill size='1.3rem' />
-        </button>
         <img
           src={movie.Poster}
           alt={movie.Title}
           className='w-full object-cover mb-2'
         />
-        {/* <button className='w-full py-3 bg-zinc-800 text-white rounded-md'>
-          + Add to Wishlist
-        </button> */}
+        {isInWatchLists ? (
+          <button
+            onClick={handleRemoveFromWatchLists}
+            className='w-full py-3 bg-blue-700  text-white rounded-md'
+          >
+            Remove from Watchlists
+          </button>
+        ) : (
+          <button
+            onClick={handleAddToWatchLists}
+            className='w-full py-3 bg-zinc-800 text-white rounded-md'
+          >
+            Add to Watchlists
+          </button>
+        )}
       </div>
 
       <div className='flex-1'>

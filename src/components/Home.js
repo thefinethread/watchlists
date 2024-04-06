@@ -120,8 +120,8 @@ const Home = () => {
       </form>
 
       <section className='w-full flex justify-center'>
-        {/* {searchResult && <MoviesList movies={searchResult} />} */}
-        <Shimmer />
+        {searchResult && <MoviesList movies={searchResult} />}
+        {/* <Shimmer /> */}
       </section>
     </main>
   );
