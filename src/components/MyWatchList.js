@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import MoviesList from './MoviesList';
 import AppContext from '../context/AppContext';
+import Message from './Message';
 
 const MyWatchList = () => {
   const { watchLists, loggedInUser } = useContext(AppContext);
@@ -25,10 +26,6 @@ const MyWatchList = () => {
       )}
     </main>
   );
-};
-
-const Message = ({ msg }) => {
-  return <p className='text-center text-2xl text-zinc-400'>{msg}</p>;
 };
 
 export default MyWatchList;

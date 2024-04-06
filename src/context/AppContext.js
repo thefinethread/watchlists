@@ -7,6 +7,11 @@ const AppContext = createContext();
 export const AppContextProvider = ({ children }) => {
   const { getItemFromLS, setItemInLS } = useLocalStorage();
 
+  const [searchResults, setSearchResults] = useState([]);
+  const [totalResults, setTotalResults] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [query, setQuery] = useState('');
+
   const [loggedInUser, setLoggedInUser] = useState(
     getItemFromLS('loggedInUser')
   );
@@ -41,6 +46,10 @@ export const AppContextProvider = ({ children }) => {
     setItemInLS('loggedInUser', null);
     setLoggedInUser(null);
     setWatchLists([]);
+    setCurrentPage(1);
+    setSearchResults([]);
+    setQuery('');
+    setTotalResults(0);
     toast.info(`You're logged out!`);
   };
 
@@ -82,16 +91,28 @@ export const AppContextProvider = ({ children }) => {
     }
   };
 
+  const addSearchResults = (res) => {
+    setSearchResults(res);
+  };
+
   return (
     <AppContext.Provider
       value={{
         loggedInUser,
         registeredUsers,
         watchLists,
+        searchResults,
+        totalResults,
+        currentPage,
+        query,
         handleUserAuthentication,
         logout,
         addMovieToWatchLists,
         removeMovieFromWatchLists,
+        addSearchResults,
+        setTotalResults,
+        setCurrentPage,
+        setQuery,
       }}
     >
       {children}

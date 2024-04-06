@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { navItems } from '../constants/contants';
 import AppContext from '../context/AppContext';
 
 const activeLink = ({ isActive }) =>
@@ -24,15 +23,12 @@ const Header = () => {
         <h1 className=' text-3xl font-bold text-orange-600'>Watchlists</h1>
       </Link>
       <nav className='flex items-center gap-4'>
-        <ul className='flex gap-4'>
-          {navItems.map((item) => (
-            <NavLink key={item.id} to={item.to} className={activeLink}>
-              <li className='hover:underline hover:underline-offset-2'>
-                {item.label}
-              </li>
-            </NavLink>
-          ))}
-        </ul>
+        <NavLink to={'/my-lists'} className={activeLink}>
+          <div className='hover:underline hover:underline-offset-2'>
+            My Lists
+          </div>
+        </NavLink>
+
         <button
           onClick={handleAuth}
           className='bg-zinc-800 text-white rounded-md py-2 px-5'

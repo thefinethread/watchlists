@@ -1,7 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { RiAddFill, RiBookmark3Line, RiSubtractFill } from 'react-icons/ri';
+import { RiAddFill, RiSubtractFill } from 'react-icons/ri';
 import AppContext from '../context/AppContext';
+import NoImage from '../assets/images/no-image.png';
+import {
+  ADD_TO_WATCHLISTS,
+  REMOVE_FROM_WATCHLISTS,
+} from '../constants/constants';
 
 const MovieCard = ({
   imdbID,
@@ -10,7 +15,7 @@ const MovieCard = ({
   Poster,
   isFromWatchLists = false,
 }) => {
-  const { addMovieToWatchLists, removeMovieFromWatchLists, loggedInUser } =
+  const { addMovieToWatchLists, removeMovieFromWatchLists } =
     useContext(AppContext);
 
   const handleAddToWatchLists = (e) => {
@@ -28,7 +33,7 @@ const MovieCard = ({
         <div className='relative'>
           {isFromWatchLists ? (
             <button
-              title='Remove from watchlists'
+              title={REMOVE_FROM_WATCHLISTS}
               onClick={handleRemoveFromWatchLists}
               className='absolute z-10 bg-zinc-900 rounded-full h-10 w-10 -top-5 border-[3px] border-zinc-50  right-1 text-white text-3xl justify-center items-center flex'
             >
@@ -36,7 +41,7 @@ const MovieCard = ({
             </button>
           ) : (
             <button
-              title='Add to watchlists'
+              title={ADD_TO_WATCHLISTS}
               onClick={handleAddToWatchLists}
               className='absolute z-10 bg-zinc-900 rounded-full h-10 w-10 -top-5 border-[3px] border-zinc-50  right-1 text-white text-3xl justify-center items-center flex'
             >
@@ -45,7 +50,7 @@ const MovieCard = ({
           )}
 
           <img
-            src={Poster}
+            src={Poster === 'N/A' ? NoImage : Poster}
             alt={Title}
             className='object-cover rounded-md brightness-90 hover:brightness-100'
           />

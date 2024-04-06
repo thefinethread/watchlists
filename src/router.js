@@ -3,7 +3,6 @@ import Home from './components/Home';
 import Auth from './components/Auth';
 import NotFound from './components/NotFound';
 import App from './App';
-import MyLists from './components/MyLists';
 import Movie from './components/Movie';
 import MyWatchList from './components/MyWatchList';
 
