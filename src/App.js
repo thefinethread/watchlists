@@ -3,9 +3,9 @@ import Header from './components/Header';
 
 function App() {
   return (
-    <div className='h-screen w-screen max-w-7xl'>
+    <div className='max-w-7xl overflow-x-hidden flex flex-col'>
       <Header />
-      <div className='max-w-7xl px-4 h-[calc(100%-80px)] overflow-x-hidden'>
+      <div className='w-full mt-[80px] px-4 h-full flex-1 overflow-y-hidden'>
         <Outlet />
       </div>
     </div>

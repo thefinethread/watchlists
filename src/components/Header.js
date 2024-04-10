@@ -18,7 +18,7 @@ const Header = () => {
   };
 
   return (
-    <header className='flex border-b-2 w-full justify-between p-4 h-20 items-center'>
+    <header className='flex left-0 border-b-2 z-20 bg-white justify-between p-4 h-20 items-center fixed top-0 w-full'>
       <Link to='/'>
         <h1 className=' text-3xl font-bold text-orange-600'>Watchlists</h1>
       </Link>

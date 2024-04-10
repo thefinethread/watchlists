@@ -18,7 +18,7 @@ const Auth = () => {
   }, [loggedInUser, navigate]);
 
   return (
-    <main className='flex justify-center items-center h-full flex-col gap-8'>
+    <main className='flex justify-center items-center h-full flex-col gap-8 pt-4'>
       <div className=' text-center text-xl '>
         <p>New to Watchlists? Enter your email to create your account.</p>
         <p>Returning user? Simply log in with the same email.</p>
