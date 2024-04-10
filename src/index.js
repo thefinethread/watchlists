@@ -4,7 +4,6 @@ import './index.css';
 import { RouterProvider } from 'react-router-dom';
 import router from './router';
 import { AppContextProvider } from './context/AppContext';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,6 +12,5 @@ root.render(
     <AppContextProvider>
       <RouterProvider router={router} />
     </AppContextProvider>
-    <ToastContainer autoClose={1500} />/
   </React.StrictMode>
 );
