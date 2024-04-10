@@ -8,6 +8,7 @@ import { RiAddCircleFill } from 'react-icons/ri';
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
+  const [text, setText] = useState('');
 
   const {
     addSearchResults,
@@ -16,36 +17,44 @@ const Home = () => {
     totalResults,
     currentPage,
     setCurrentPage,
-    query,
-    setQuery,
+    searchQuery,
+    setSearchQuery,
   } = useContext(AppContext);
 
   const handleSearch = async (e) => {
     e.preventDefault();
 
-    if (!query) return;
+    if (!text) return;
 
     setLoading(true);
 
-    const { Search, totalResults } = await fetchMovies(query);
+    const { Search, totalResults } = await fetchMovies(text);
+
+    setLoading(false);
 
     if (Search) {
       addSearchResults(Search);
       setTotalResults(totalResults);
+      setSearchQuery(text);
+      setCurrentPage(1);
+      setText('');
     }
-    setLoading(false);
   };
 
   const handlePaginate = async (page) => {
     setLoading(true);
     setCurrentPage(page);
 
-    const { Search } = await fetchMovies(query, page);
+    const { Search } = await fetchMovies(searchQuery, page);
+
+    setLoading(false);
 
     if (Search) {
       addSearchResults(Search);
+    } else {
+      setTotalResults(0);
+      setCurrentPage(1);
     }
-    setLoading(false);
   };
 
   return (
@@ -66,9 +75,9 @@ const Home = () => {
         className='sm:w-2/3 max-w-2xl  m-auto flex flex-col gap-2 sm:flex-row mb-20 my-14'
       >
         <input
-          value={query}
+          value={text}
           type='text'
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => setText(e.target.value)}
           placeholder='search movies...'
           className='w-full  h-10 border-2 border-solid border-zinc-400 outline-none rounded-md px-2'
         />

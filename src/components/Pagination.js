@@ -31,7 +31,7 @@ const Pagination = ({ totalResults, currentPage, handlePaginate }) => {
 
     if (end < numberOfPages) {
       if (end < numberOfPages - 1) {
-        numbers.push('...');
+        if (!numbers.includes('...')) numbers.push('...');
       }
       numbers.push(numberOfPages);
     }
@@ -45,6 +45,7 @@ const Pagination = ({ totalResults, currentPage, handlePaginate }) => {
     <div className='mt-5 w-full flex justify-center flex-wrap gap-1'>
       {paginationNumbers.map((num) => (
         <button
+          data-testid='pagination-button'
           onClick={() => num !== '...' && handlePaginate(num)}
           key={num}
           className={`h-8 w-10 border border-solid rounded-md border-zinc-300 ${

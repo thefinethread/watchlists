@@ -10,7 +10,7 @@ export const AppContextProvider = ({ children }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [query, setQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const [loggedInUser, setLoggedInUser] = useState(
     getItemFromLS('loggedInUser')
@@ -22,7 +22,7 @@ export const AppContextProvider = ({ children }) => {
 
   useEffect(() => {
     fetchWatchLists(loggedInUser);
-  }, []);
+  }, [loggedInUser]);
 
   const handleUserAuthentication = (email) => {
     if (!registeredUsers.includes(email)) {
@@ -48,7 +48,7 @@ export const AppContextProvider = ({ children }) => {
     setWatchLists([]);
     setCurrentPage(1);
     setSearchResults([]);
-    setQuery('');
+    setSearchQuery('');
     setTotalResults(0);
     toast.info(`You're logged out!`);
   };
@@ -104,7 +104,7 @@ export const AppContextProvider = ({ children }) => {
         searchResults,
         totalResults,
         currentPage,
-        query,
+        searchQuery,
         handleUserAuthentication,
         logout,
         addMovieToWatchLists,
@@ -112,7 +112,7 @@ export const AppContextProvider = ({ children }) => {
         addSearchResults,
         setTotalResults,
         setCurrentPage,
-        setQuery,
+        setSearchQuery,
       }}
     >
       {children}

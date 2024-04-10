@@ -28,7 +28,7 @@ const MovieCard = ({
     removeMovieFromWatchLists(imdbID);
   };
   return (
-    <Link to={`/movies/${imdbID}`}>
+    <Link to={`/movies/${imdbID}`} data-testid='movie-card'>
       <div className='border relative border-solid border-zinc-300 rounded-md w-36 sm:w-48 h-full hover:bg-zinc-100 hover:scale-105 hover:shadow-xl transition-all'>
         <div className='relative'>
           {isFromWatchLists ? (

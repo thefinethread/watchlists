@@ -23,7 +23,7 @@ const Header = () => {
         <h1 className=' text-3xl font-bold text-orange-600'>Watchlists</h1>
       </Link>
       <nav className='flex items-center gap-4'>
-        <NavLink to={'/my-lists'} className={activeLink}>
+        <NavLink to={'/my-lists'} data-testid='mylist' className={activeLink}>
           <div className='hover:underline hover:underline-offset-2'>
             My Lists
           </div>

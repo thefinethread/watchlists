@@ -1,10 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Home from './components/Home';
-import Auth from './components/Auth';
-import NotFound from './components/NotFound';
 import App from './App';
-import Movie from './components/Movie';
-import MyWatchList from './components/MyWatchList';
+import { lazy, Suspense } from 'react';
+import Spinner from './components/Spinner';
+
+// lazy load
+const Auth = lazy(() => import('./components/Auth'));
+const NotFound = lazy(() => import('./components/NotFound'));
+const Movie = lazy(() => import('./components/Movie'));
+const MyWatchList = lazy(() => import('./components/MyWatchList'));
+
+const LoadComponent = ({ component }) => {
+  return <Suspense fallback={<Spinner />}>{component}</Suspense>;
+};
 
 const router = createBrowserRouter([
   {
@@ -18,15 +26,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/my-lists',
-        element: <MyWatchList />,
+        element: <LoadComponent component={<MyWatchList />} />,
       },
       {
         path: '/movies/:id',
-        element: <Movie />,
+        element: <LoadComponent component={<Movie />} />,
       },
       {
         path: '/auth',
-        element: <Auth />,
+        element: <LoadComponent component={<Auth />} />,
       },
     ],
   },

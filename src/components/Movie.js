@@ -16,12 +16,10 @@ const Movie = () => {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const { addMovieToWatchLists, removeMovieFromWatchLists } =
+  const { addMovieToWatchLists, removeMovieFromWatchLists, watchLists } =
     useContext(AppContext);
 
   const { id } = useParams();
-
-  const { watchLists } = useContext(AppContext);
 
   const isInWatchLists = Boolean(
     watchLists.find((item) => item?.imdbID === movie?.imdbID)
@@ -38,17 +36,14 @@ const Movie = () => {
 
   useEffect(() => {
     const getMovie = async () => {
-      if (id.trim()) {
-        const data = await fetchMovie(id);
-        console.log(data);
-        setMovie(data);
-      }
+      const data = await fetchMovie(id);
+      setMovie(data);
       setLoading(false);
     };
     getMovie();
   }, [id]);
 
-  if (loading) return <Spinner />;
+  if (loading) return <Spinner data-testid='spinner' />;
 
   if (movie?.Response === API_FAILURE) return <Message msg={movie?.Error} />;
 
@@ -114,7 +109,7 @@ const MovieInfoItem = ({ infoItems, movie }) => {
       {infoItems.map((infoItem) => (
         <div key={infoItem?.key}>
           <span className='font-medium'>{infoItem?.label}: </span>
-          <span className='text-zinc-500'>{movie[infoItem?.key]}</span>
+          <span className='text-zinc-500'>{movie?.[infoItem?.key]}</span>
         </div>
       ))}
     </li>

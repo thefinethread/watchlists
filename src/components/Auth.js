@@ -25,6 +25,7 @@ const Auth = () => {
       </div>
 
       <form
+        data-testid='form'
         onSubmit={handleFormSubmit}
         className='w-3/4 max-w-lg flex flex-col gap-2 md:flex-row'
       >
