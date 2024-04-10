@@ -9,7 +9,7 @@ const Auth = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
+    if (!email) return;
     handleUserAuthentication(email);
   };
 
